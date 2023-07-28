@@ -132,18 +132,54 @@ export const LoginPage = () => {
                 backgroundColor: "rgb(217,217,217)",
                 top: "50%",
                 left: "50%",
-                transform: "translate(-150%, -50%)",
+                width: "500px",
+                transform: "translate(-115%, -50%)",
+                borderRadius: "25px",
               }}
             >
               <br></br>
+              <Row style={{ textAlign: "center", position: "relative" }}>
+                <Col>
+                  <Image
+                    src={icono}
+                    style={{
+                      transform: "translate(-20%, +10%)",
+                      height: "80%",
+                    }}
+                  />
+                </Col>
+                <Col>
+                  <Image
+                    src={unsa}
+                    style={{
+                      textAlign: "center",
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-35%, -50%)",
+                    }}
+                  />
+                </Col>
+              </Row>
               <br></br>
-              <h1>Login</h1>
-              <div className="btn">
-                <button onClick={() => loginGoogle()}>
-                  Sign in with Google 🚀{" "}
-                </button>
-              </div>
+              <button
+                style={{
+                  backgroundColor: "rgb(27 68 143)",
+
+                  width: "400px",
+                  borderRadius: "10px",
+                }}
+                onClick={() => loginGoogle()}
+              >
+                <h4 style={{ color: "white" }}>Ingresa con su correo UNSA</h4>
+              </button>
               
+              <br></br>
+              <p>
+                Problemas con correos:{" "}
+                <a href="www.google.com">soportecorreo@unsa.edu.pe</a>
+              </p>
+              <br></br>
             </Col>
           </Row>
         </Container>

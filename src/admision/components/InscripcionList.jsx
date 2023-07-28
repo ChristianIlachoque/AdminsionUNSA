@@ -30,11 +30,15 @@ export const InscripcionList = () => {
       <div>
         <h3>Inscripcion List</h3>
         {procesos.map((proceso) => (
-          <div class="card text-center" style={{ margin: "10px 100px" }}>
-            <div class="card-header">PROCESO ACTIVO</div>
-            <div class="card-body">
-              <h5 class="card-title">{proceso.title}</h5>
-              <p class="card-text">{proceso.description}</p>
+          <div
+            className="card text-center"
+            style={{ margin: "10px 100px" }}
+            key={proceso.id}
+          >
+            <div className="card-header">PROCESO ACTIVO</div>
+            <div className="card-body">
+              <h5 className="card-title">{proceso.title}</h5>
+              <p className="card-text">{proceso.description}</p>
               <Link
                 className="btn btn-primary"
                 to="/docente/inscripcion-proceso"
@@ -42,7 +46,7 @@ export const InscripcionList = () => {
                 Inscribirse
               </Link>
             </div>
-            <div class="card-footer text-muted">2 days ago</div>
+            <div className="card-footer text-muted">2 days ago</div>
           </div>
         ))}
       </div>
