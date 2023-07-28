@@ -8,7 +8,6 @@ export const DocentePage = () => {
     <>
       <h1>Docente PAGE</h1>
       <InscripcionList />
-      <button onClick={logout}>Logout</button>
     </>
   );
 };

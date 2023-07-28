@@ -3,16 +3,15 @@ import { useNavigate } from "react-router-dom";
 export const ProcesosCard = ({ proceso }) => {
   const navigate = useNavigate();
   return (
-    <div
-      style={{ background: "red" }}
+    <tr
       onClick={() => {
         navigate(`/admin/procesos/${proceso.id}`);
       }}
     >
-      <h1>{proceso.title}</h1>
-      <p>{proceso.description}</p>
-      <span>Incritos : 9</span>
-      <span>Cerrado: false</span>
-    </div>
+      <th scope="row">1</th>
+      <td>{proceso.title}</td>
+      <td>{proceso.description}</td>
+      <td>@mdo</td>
+    </tr>
   );
 };

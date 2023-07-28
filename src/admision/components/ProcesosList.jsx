@@ -18,12 +18,24 @@ export const ProcesosList = () => {
   return (
     <>
       <h2>Procesos List</h2>
-      {procesos.map((proceso) => (
-        <ProcesosCard key={proceso.id} proceso={proceso} />
-      ))}
-
-      <hr />
-      <Link to="/admin/procesos-create">Crear Proceso</Link>
+      <table
+        className="table table-hover"
+        style={{ margin: "140px 130px", width: "800px", height: "100px" }}
+      >
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tipo evaluación</th>
+            <th scope="col">Año</th>
+            <th scope="col">VER</th>
+          </tr>
+        </thead>
+        <tbody>
+          {procesos.map((proceso) => (
+            <ProcesosCard key={proceso.id} proceso={proceso} />
+          ))}
+        </tbody>
+      </table>
     </>
   );
 };
