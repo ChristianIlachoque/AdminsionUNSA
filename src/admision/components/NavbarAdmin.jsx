@@ -259,12 +259,14 @@ export const NavbarAdmin = ({ menu }) => {
                   Procesos
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <a href="#">Crear proceso</a>
-              </li>
-              <li>
-                <a href="#">Ver proceso</a>
-              </li>
+              </li> */}
+              <Link to="/admin/procesos-create">Crear Proceso</Link>
+              {/* <li>
+                <a href="#">Ver procesos</a>
+              </li> */}
+              <Link to="/admin/procesos">Ver Procesos</Link>
             </ul>
           </li>
           <br></br>

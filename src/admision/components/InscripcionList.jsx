@@ -1,17 +1,38 @@
 import { useEffect, useState } from "react";
-import { getAllProcesos } from "../../api/inscripcion.api";
+
 import { Link } from "react-router-dom";
+import {
+  getAllInscripciones,
+  getAllRondas,
+} from "../../api/inscripcionUser.api";
+const acces_token =
+  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA2MjM3MTM0LCJpYXQiOjE2OTA2ODUxMzQsImp0aSI6IjNiZGUxNWQ0NDYxZDRkMTNiYWZmZDI5NmE2M2JhMmU4IiwidXNlcl9pZCI6IjI4ZDNjMzZhLWZlNzQtNDE5Zi05ZmJmLWM3ZWNkOTczZDRiYiJ9.MshqTJOn5DhhIk4Fw4bOQsNbaq7xffV01-Jc2gSjGH0";
 
 export const InscripcionList = () => {
   const [procesos, setProcesos] = useState([]);
+  const [inscripcionesIds, setInscripcionesIds] = useState([]);
   //const [procesosActivos, setProcesosActivos] = useState([])
   useEffect(() => {
     async function loadProcesos() {
-      const res = await getAllProcesos();
+      const res = await getAllRondas(acces_token);
       setProcesos(res.data);
+      console.log("rondas: ", res.data);
     }
     loadProcesos();
     //getProcesoActivos()
+  }, []);
+
+  useEffect(() => {
+    const getInscripcionesID = async () => {
+      const res = await getAllInscripciones(acces_token);
+      console.log("inscripciones: ", res.data);
+      const newListId = res.data.map((ins) => {
+        return ins.round_inscription;
+      });
+      console.log("incrip list 11: ", newListId);
+      setInscripcionesIds(newListId);
+    };
+    getInscripcionesID();
   }, []);
 
   // const getProcesoActivos = () => {
@@ -20,6 +41,17 @@ export const InscripcionList = () => {
   //   })
   //   setProcesosActivos(res)
   // }
+
+  {
+    /* COMPONENTE 2 - Mensaje no existen procesos activos */
+  }
+  if (procesos.length === 0) {
+    return (
+      <div>
+        <h2>No hay procesos activos</h2>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -35,25 +67,33 @@ export const InscripcionList = () => {
             style={{ margin: "10px 100px" }}
             key={proceso.id}
           >
-            <div className="card-header">PROCESO ACTIVO</div>
+            <div className="card-header">
+              {proceso.is_active ? "PROCESO ACTIVO" : "PROCESO TERMINADO"}
+            </div>
             <div className="card-body">
               <h5 className="card-title">{proceso.title}</h5>
               <p className="card-text">{proceso.description}</p>
-              <Link
-                className="btn btn-primary"
-                to="/docente/inscripcion-proceso"
-              >
-                Inscribirse
-              </Link>
+              {inscripcionesIds.includes(proceso.id) ? (
+                <Link
+                  className="btn btn-primary"
+                  to="/docente/inscripcion-proceso2/"
+                  state={proceso}
+                >
+                  Inscrito
+                </Link>
+              ) : (
+                <Link
+                  className="btn btn-primary"
+                  to="/docente/inscripcion-proceso/"
+                  state={proceso}
+                >
+                  Inscribirse
+                </Link>
+              )}
             </div>
             <div className="card-footer text-muted">2 days ago</div>
           </div>
         ))}
-      </div>
-
-      {/* COMPONENTE 2 - Mensaje no existen procesos activos */}
-      <div>
-        <h2>No hay procesos activos</h2>
       </div>
     </>
   );

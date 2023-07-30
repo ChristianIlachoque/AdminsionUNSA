@@ -1,11 +1,34 @@
 import axios from "axios";
 
+const inscripcionApi = axios.create({
+  baseURL: "http://35.222.147.54:8000/api/roundinscription/userinscription/",
+});
 const evaluacionesApi = axios.create({
   baseURL: "http://35.222.147.54:8000/api/admisionprocess/evaluation",
 });
 const rondasApi = axios.create({
   baseURL: "http://35.222.147.54:8000/api/roundinscription/roundinscription/",
 });
+
+export const createInscripcion = (acces_token, inscripcion) => {
+  return inscripcionApi.post(
+    "/",
+    { round_inscription: inscripcion.ronda },
+    {
+      headers: {
+        Authorization: acces_token,
+      },
+    }
+  );
+};
+
+export const getAllInscripciones = (acces_token) => {
+  return inscripcionApi.get("/", {
+    headers: {
+      Authorization: acces_token,
+    },
+  });
+};
 
 export const getAllRondas = (acces_token) => {
   return rondasApi.get("/", {
@@ -58,15 +81,3 @@ export const getAllEvaluaciones = (acces_token) => {
     },
   });
 };
-// export const getProceso = (idProceso, idUsuario) => {
-//   return procesosApi.get(`/${idProceso}/${idUsuario}/`);
-// };
-
-// export const createInscripcion = (idProceso, idUsuario) => {
-//   const newInsc = {
-//     idProceso,
-//     idUsuario,
-//   };
-//   return procesosApi.post("/", newInsc);
-//   //return inscripcioApi.post(/, newInscipcion)
-// };

@@ -64,7 +64,7 @@ export const NavbarDocente = ({ menu }) => {
                 <i>
                   <BiSolidSchool></BiSolidSchool>
                 </i>
-                <span className="link_name">Espacios</span>
+                <span className="link_name">Procesos</span>
               </a>
               <i
                 className="bx bxs-chevron-down arrow "
@@ -75,21 +75,13 @@ export const NavbarDocente = ({ menu }) => {
             <ul className="sub-menu">
               <li>
                 <a className="link_name" href="#">
-                  Espacios
+                  Procesos
                 </a>
               </li>
-              <li>
-                <a href="#">Aulas</a>
-              </li>
-              <li>
-                <a href="#">Escuelas</a>
-              </li>
-              <li>
-                <a href="#">Pabellones</a>
-              </li>
-              <li>
-                <a href="#">Áreas</a>
-              </li>
+              <Link to="/docente/inscripcion">Ver procesos Activos</Link>
+              {/* <li>
+                <a href="#">Ver procesos Activos</a>
+              </li> */}
             </ul>
           </li>
           <li className={`${subMenu2}`}>
@@ -98,7 +90,7 @@ export const NavbarDocente = ({ menu }) => {
                 <i>
                   <BsPersonGear></BsPersonGear>
                 </i>
-                <span className="link_name">Personal</span>
+                <span className="link_name">Inscripciones</span>
               </a>
               <i
                 className="bx bxs-chevron-down arrow "
@@ -109,17 +101,11 @@ export const NavbarDocente = ({ menu }) => {
             <ul className="sub-menu">
               <li>
                 <a className="link_name" href="#">
-                  Personal
+                  Inscripciones
                 </a>
               </li>
               <li>
-                <a href="#">Docentes</a>
-              </li>
-              <li>
-                <a href="#">Postulantes</a>
-              </li>
-              <li>
-                <a href="#">Personal adicional</a>
+                <a href="#">Ver inscripciones</a>
               </li>
             </ul>
           </li>

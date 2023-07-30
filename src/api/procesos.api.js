@@ -1,5 +1,8 @@
 import axios from "axios";
 
+const inscripcionApi = axios.create({
+  baseURL: "http://35.222.147.54:8000/api/roundinscription/roundinscription",
+});
 const procesosApi = axios.create({
   baseURL: "http://localhost:7000/tasks/api/v1/tasks/",
 });
@@ -26,4 +29,16 @@ export const updateProceso = (id, proceso) => {
     description: proceso.description,
   };
   return procesosApi.put(`/${id}/`, newTask);
+};
+// PARA RONDAS DE INSCRIPCION
+export const getAllInscripciones = (acces_token) => {
+  return inscripcionApi.get("/", {
+    headers: {
+      Authorization: `Bearer ${acces_token}`,
+    },
+  });
+};
+
+export const createInscripcion = (inscripcion) => {
+  return inscripcionApi.post("/", inscripcion);
 };

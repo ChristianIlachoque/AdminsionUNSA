@@ -41,6 +41,7 @@ export const LoginPage = () => {
           { access_token: resGoogle.access_token }
         );
         setResBack(res.data);
+        console.log(res.data);
       };
       getTokenUser().catch((error) => {
         console.log("user no regitrado en app: ", error);
@@ -173,7 +174,7 @@ export const LoginPage = () => {
               >
                 <h4 style={{ color: "white" }}>Ingresa con su correo UNSA</h4>
               </button>
-              
+
               <br></br>
               <p>
                 Problemas con correos:{" "}
