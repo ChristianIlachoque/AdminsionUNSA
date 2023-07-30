@@ -166,9 +166,10 @@ export const NavbarAdmin = ({ menu }) => {
               <li>
                 <a href="#">Generar sorteo</a>
               </li>
-              <li>
-                <a href="#">Sorteos</a>
-              </li>
+              {/* <li>
+                <a href="#">Ver Sorteos</a>
+              </li> */}
+              <Link to="/admin/sorteos">Ver Sorteos</Link>
               <li>
                 <a href="#">Asignaciones</a>
               </li>

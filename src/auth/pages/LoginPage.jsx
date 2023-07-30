@@ -16,7 +16,7 @@ import unsa from "../../assets/unsa.png";
 
 const address = "http://35.222.147.54:8000/";
 export const LoginPage = () => {
-  const { login, setUser } = useContext(AppContext);
+  const { login, setUser, setAccessToken } = useContext(AppContext);
 
   const [resGoogle, setResGoogle] = useState(null);
   const [resBack, setResBack] = useState(null);
@@ -41,9 +41,16 @@ export const LoginPage = () => {
           { access_token: resGoogle.access_token }
         );
         setResBack(res.data);
+        setAccessToken(res.data.access_token);
+        console.log("accesToken", res.data.access_token);
+        localStorage.setItem(
+          "token",
+          JSON.stringify(`Bearer ${res.data.access_token}`)
+        );
         console.log(res.data);
       };
       getTokenUser().catch((error) => {
+        window.alert("Usuario no registrado en esta web");
         console.log("user no regitrado en app: ", error);
       });
     }

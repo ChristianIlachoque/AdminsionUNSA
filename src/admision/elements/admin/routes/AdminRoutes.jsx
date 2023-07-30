@@ -35,10 +35,7 @@ export const AdminRoutes = ({ isAdmin }) => {
 
           <Route path="/sorteos" element={<SorteosPage />} />
           <Route path="/sorteos-create" element={<SorteosForm />} />
-          <Route
-            path="/sorteos/:id"
-            element={<h1>To see and edit sorteo</h1>}
-          />
+          {/* <Route path="/sorteos/:id" element={<SorteosForm />} /> */}
 
           <Route path="/*" element={<Navigate to="/admin/procesos" />} />
         </Routes>

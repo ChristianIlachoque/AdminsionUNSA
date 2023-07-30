@@ -1,19 +1,23 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 import {
+  getAllEvaluaciones,
   getAllInscripciones,
   getAllRondas,
 } from "../../api/inscripcionUser.api";
-const acces_token =
-  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA2MjM3MTM0LCJpYXQiOjE2OTA2ODUxMzQsImp0aSI6IjNiZGUxNWQ0NDYxZDRkMTNiYWZmZDI5NmE2M2JhMmU4IiwidXNlcl9pZCI6IjI4ZDNjMzZhLWZlNzQtNDE5Zi05ZmJmLWM3ZWNkOTczZDRiYiJ9.MshqTJOn5DhhIk4Fw4bOQsNbaq7xffV01-Jc2gSjGH0";
+import { AppContext } from "../../context/AppContext";
+// const acces_token =
+//   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA2MjM3MTM0LCJpYXQiOjE2OTA2ODUxMzQsImp0aSI6IjNiZGUxNWQ0NDYxZDRkMTNiYWZmZDI5NmE2M2JhMmU4IiwidXNlcl9pZCI6IjI4ZDNjMzZhLWZlNzQtNDE5Zi05ZmJmLWM3ZWNkOTczZDRiYiJ9.MshqTJOn5DhhIk4Fw4bOQsNbaq7xffV01-Jc2gSjGH0";
 
 export const InscripcionList = () => {
+  // const { acces_token } = useContext(AppContext);
   const [procesos, setProcesos] = useState([]);
   const [inscripcionesIds, setInscripcionesIds] = useState([]);
   //const [procesosActivos, setProcesosActivos] = useState([])
   useEffect(() => {
     async function loadProcesos() {
+      const acces_token = JSON.parse(localStorage.getItem("token"));
       const res = await getAllRondas(acces_token);
       setProcesos(res.data);
       console.log("rondas: ", res.data);
@@ -24,6 +28,7 @@ export const InscripcionList = () => {
 
   useEffect(() => {
     const getInscripcionesID = async () => {
+      const acces_token = JSON.parse(localStorage.getItem("token"));
       const res = await getAllInscripciones(acces_token);
       console.log("inscripciones: ", res.data);
       const newListId = res.data.map((ins) => {
@@ -35,6 +40,15 @@ export const InscripcionList = () => {
     getInscripcionesID();
   }, []);
 
+  const [evaluaciones, setEvaluaciones] = useState([]);
+  useEffect(() => {
+    const getEvaluaciones = async () => {
+      const acces_token = JSON.parse(localStorage.getItem("token"));
+      const res = await getAllEvaluaciones(acces_token);
+      setEvaluaciones(res.data);
+    };
+    getEvaluaciones();
+  }, []);
   // const getProcesoActivos = () => {
   //   let res = procesos.filter(proceso => {
   //     return proceso.isActived === true
@@ -71,8 +85,16 @@ export const InscripcionList = () => {
               {proceso.is_active ? "PROCESO ACTIVO" : "PROCESO TERMINADO"}
             </div>
             <div className="card-body">
-              <h5 className="card-title">{proceso.title}</h5>
-              <p className="card-text">{proceso.description}</p>
+              {evaluaciones.map((evl) => {
+                if (evl.id === proceso.evaluation)
+                  return (
+                    <h5 className="card-title" key={evl.id}>
+                      {evl.evaluation}
+                    </h5>
+                  );
+              })}
+
+              <p className="card-text">{proceso.description}-</p>
               {inscripcionesIds.includes(proceso.id) ? (
                 <Link
                   className="btn btn-primary"

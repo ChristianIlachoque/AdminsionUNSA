@@ -6,6 +6,9 @@ export const AppContext = createContext();
 export const AppContextProvider = (props) => {
   const navigate = useNavigate();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+  const [acces_token, setAccessToken] = useState(
+    JSON.parse(localStorage.getItem("token"))
+  );
 
   const login = () => {
     const dato = localStorage.getItem("user");
@@ -16,11 +19,15 @@ export const AppContextProvider = (props) => {
   };
   const logout = () => {
     setUser(null);
+    setAccessToken(null);
     localStorage.setItem("user", null);
+    localStorage.setItem("token", null);
     navigate("/auth/login");
   };
   return (
-    <AppContext.Provider value={{ user, setUser, login, logout }}>
+    <AppContext.Provider
+      value={{ user, setUser, login, logout, acces_token, setAccessToken }}
+    >
       {props.children}
     </AppContext.Provider>
   );

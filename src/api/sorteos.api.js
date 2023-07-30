@@ -7,66 +7,38 @@ const rondasApi = axios.create({
   baseURL: "http://35.222.147.54:8000/api/roundinscription/roundinscription/",
 });
 
-export const getAllRondas = (acces_token) => {
-  return rondasApi.get("/", {
-    headers: {
-      Authorization: acces_token,
-    },
-  });
-};
+const sorteosApi = axios.create({
+  baseURL: "http://35.222.147.54:8000/api/raffle/raffle/",
+});
 
-export const getRonda = (acces_token, id) => {
-  return rondasApi.get(`/${id}`, {
+export const getAllSorteos = (acces_token) => {
+  return sorteosApi.get("/", {
     headers: {
       Authorization: acces_token,
     },
   });
 };
-export const createRonda = (acces_token, ronda) => {
-  return rondasApi.post(
+export const createSorteo = (acces_token, sorteo) => {
+  return sorteosApi.post(
     "/",
-    { evaluation: ronda.evaluacion },
+    { number_of_winners: sorteo.winners, round_inscription: sorteo.ronda },
     {
       headers: { Authorization: acces_token },
     }
   );
 };
-
-export const deleteRonda = (acces_token, id) => {
-  return rondasApi.delete(`/${id}`, {
+export const getSorteo = (acces_token, id) => {
+  return sorteosApi.get(`/${id}`, {
     headers: {
       Authorization: acces_token,
     },
   });
 };
 
-export const updateRonda = (acces_token, id, ronda) => {
-  let newRonda = {
-    evaluation: ronda.evaluacion,
-    is_active: ronda.active,
-  };
-  return rondasApi.put(`/${id}/`, newRonda, {
+export const deleteSorteo = (acces_token, id) => {
+  return sorteosApi.delete(`/${id}/`, {
     headers: {
       Authorization: acces_token,
     },
   });
 };
-export const getAllEvaluaciones = (acces_token) => {
-  return evaluacionesApi.get("/", {
-    headers: {
-      Authorization: acces_token,
-    },
-  });
-};
-// export const getProceso = (idProceso, idUsuario) => {
-//   return procesosApi.get(`/${idProceso}/${idUsuario}/`);
-// };
-
-// export const createInscripcion = (idProceso, idUsuario) => {
-//   const newInsc = {
-//     idProceso,
-//     idUsuario,
-//   };
-//   return procesosApi.post("/", newInsc);
-//   //return inscripcioApi.post(/, newInscipcion)
-// };

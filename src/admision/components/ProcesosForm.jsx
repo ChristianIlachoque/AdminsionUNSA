@@ -6,7 +6,7 @@ import {
   updateProceso,
 } from "../../api/procesos.api";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   createRonda,
   deleteRonda,
@@ -14,11 +14,13 @@ import {
   getRonda,
   updateRonda,
 } from "../../api/inscripcion.api";
+import { AppContext } from "../../context/AppContext";
 
-const acces_token =
-  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA2MTYyODIyLCJpYXQiOjE2OTA2MTA4MjIsImp0aSI6IjliNDU2N2U1YzdlNzQ2ZjE5ZmE2ZGVmZThmM2YxZmVhIiwidXNlcl9pZCI6IjFkYjcyMzczLTY0NTAtNDU3OC1iY2E4LTk3YzQzMTE0NTc3MSJ9.XMi2CvjrCQ5eDFHArETTvoRPC8jdMfQ7YJ0V9L7pemo";
+// const acces_token =
+//   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA2MTYyODIyLCJpYXQiOjE2OTA2MTA4MjIsImp0aSI6IjliNDU2N2U1YzdlNzQ2ZjE5ZmE2ZGVmZThmM2YxZmVhIiwidXNlcl9pZCI6IjFkYjcyMzczLTY0NTAtNDU3OC1iY2E4LTk3YzQzMTE0NTc3MSJ9.XMi2CvjrCQ5eDFHArETTvoRPC8jdMfQ7YJ0V9L7pemo";
 
 export const ProcesosForm = () => {
+  const { acces_token } = useContext(AppContext);
   const [evaluaciones, setEvaluaciones] = useState([]);
   const {
     register,
@@ -29,6 +31,7 @@ export const ProcesosForm = () => {
 
   useEffect(() => {
     async function loadProceso() {
+      const acces_token = JSON.parse(localStorage.getItem("token"));
       const resE = await getAllEvaluaciones(acces_token);
       console.log("evals: ", resE.data);
       setEvaluaciones(resE.data);
@@ -46,6 +49,7 @@ export const ProcesosForm = () => {
   const navigate = useNavigate();
   const params = useParams();
   const onSubmit = handleSubmit(async (data) => {
+    const acces_token = JSON.parse(localStorage.getItem("token"));
     if (params.id) {
       await updateRonda(acces_token, params.id, data);
     } else {
