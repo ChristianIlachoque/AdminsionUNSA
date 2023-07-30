@@ -274,6 +274,9 @@ export const NavbarAdmin = ({ menu }) => {
           <br></br>
           <li>
             <div className="profile-details">
+            <div className="profile-content">
+                
+                </div>
               <div className="name-job">
                 <div className="profile_name">
                   {user.email.substring(0, user.email.search("@"))}

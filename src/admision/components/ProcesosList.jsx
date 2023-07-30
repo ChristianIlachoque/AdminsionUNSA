@@ -25,10 +25,10 @@ export const ProcesosList = () => {
 
   return (
     <>
-      <h2>Procesos List</h2>
+      <h2 style={{ margin: "0px 30px"}}>Lista de los procesos</h2>
       <table
         className="table table-hover"
-        style={{ margin: "140px 130px", width: "800px", height: "100px" }}
+        style={{ margin: "30px 130px", width: "800px", height: "100px" }}
       >
         <thead>
           <tr>
