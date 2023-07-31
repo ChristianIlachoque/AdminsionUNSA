@@ -17,7 +17,7 @@ export const SorteosCard = ({ sorteo }) => {
         <div
           className="btn btn-primary"
           onClick={() => {
-            navigate(`/admin/sorteos/${sorteo.id}`);
+            navigate(`/admin/ganadores/${sorteo.id}`);
           }}
         >
           Ver

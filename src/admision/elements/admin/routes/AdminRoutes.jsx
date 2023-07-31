@@ -5,6 +5,7 @@ import { ProcesosForm } from "../../../components/ProcesosForm";
 import { useState } from "react";
 import { SorteosPage } from "../../../pages/SorteosPage";
 import { SorteosForm } from "../../../components/SorteosForm";
+import { Ganadores } from "../../../components/Ganadores";
 
 export const AdminRoutes = ({ isAdmin }) => {
   const [menu, setMenu] = useState("");
@@ -36,6 +37,7 @@ export const AdminRoutes = ({ isAdmin }) => {
           <Route path="/sorteos" element={<SorteosPage />} />
           <Route path="/sorteos-create" element={<SorteosForm />} />
           {/* <Route path="/sorteos/:id" element={<SorteosForm />} /> */}
+          <Route path="/ganadores/:id" element={<Ganadores />} />
 
           <Route path="/*" element={<Navigate to="/admin/procesos" />} />
         </Routes>

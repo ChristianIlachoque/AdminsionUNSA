@@ -97,60 +97,80 @@ export const ProcesosForm = () => {
     //   )}
     // </>
     <>
-      <form onSubmit={onSubmit} 
-            style={{margin: '100px 200px',
-                  background: 'rgb(217,217,217)',
-                  borderRadius: '25px'}}>
-      <br></br>
-      <h2 style={{margin: '0px 0px',
-                  textAlign: 'center'}}>Crear un nuevo proceso</h2>
-      <br></br>
-      <div class="form-group" style={{margin: '0px 30px'}}>
-        <label for="exampleFormControlSelect1">Seleccione el examen</label>
-        <select {...register("evaluacion", { required: true })}>
-          {evaluaciones.map((evaluacion) => (
-            <option value={evaluacion.id} key={evaluacion.id}>
-              {evaluacion.evaluation}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div class="form-check" style={{margin: '0px 30px'}}>
-        {errors.exam && <span>evaluacion is required</span>}
-        {params.id && (
-          <>
-            <input {...register("active")} type="checkbox" value={true} class="form-check-input"/>
-            Activo
-          </>
-        )}
-      </div>
-      <br></br>
-      <div style={{margin: '0px 135px'}}>
-            <button type="button" class="btn btn-primary" style={{background: '#3351a3'
-                                                                  }}>
-                    Guardar</button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="button" class="btn btn-danger">
-              <Link to="/admin/procesos" style={{textDecoration: 'none',
-                                                 color: '#FFFFFF' }}>Cancelar</Link>
+      <form
+        onSubmit={onSubmit}
+        style={{
+          margin: "100px 200px",
+          background: "rgb(217,217,217)",
+          borderRadius: "25px",
+        }}
+      >
+        <br></br>
+        <h2 style={{ margin: "0px 0px", textAlign: "center" }}>
+          Crear un nuevo proceso
+        </h2>
+        <br></br>
+        <div className="form-group" style={{ margin: "0px 30px" }}>
+          <label>Seleccione el examen</label>
+          <select {...register("evaluacion", { required: true })}>
+            {evaluaciones.map((evaluacion) => (
+              <option value={evaluacion.id} key={evaluacion.id}>
+                {evaluacion.evaluation}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="form-check" style={{ margin: "0px 30px" }}>
+          {errors.exam && <span>evaluacion is required</span>}
+          {params.id && (
+            <>
+              <input
+                {...register("active")}
+                type="checkbox"
+                value={true}
+                className="form-check-input"
+              />
+              Activo
+            </>
+          )}
+        </div>
+        <br></br>
+        <div style={{ margin: "0px 135px" }}>
+          <button
+            type="button"
+            className="btn btn-primary"
+            style={{ background: "#3351a3" }}
+          >
+            Guardar
+          </button>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <button type="button" className="btn btn-danger">
+            <Link
+              to="/admin/procesos"
+              style={{ textDecoration: "none", color: "#FFFFFF" }}
+            >
+              Cancelar
+            </Link>
+          </button>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          {params.id && (
+            <button
+              type="button"
+              className="btn btn-danger"
+              onClick={async () => {
+                const accepted = window.confirm("are you sure?");
+                if (accepted) {
+                  await deleteRonda(acces_token, params.id);
+                  navigate("/admin/procesos");
+                }
+              }}
+            >
+              Delete
             </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            {params.id && (
-              <button type="button" class="btn btn-danger"
-                onClick={async () => {
-                  const accepted = window.confirm("are you sure?");
-                  if (accepted) {
-                    await deleteRonda(acces_token, params.id);
-                    navigate("/admin/procesos");
-                  }
-                }}
-              >
-                Delete
-              </button>
-            )}
-      </div>
-    <br></br>
-    </form>
+          )}
+        </div>
+        <br></br>
+      </form>
     </>
   );
 };
