@@ -10,8 +10,8 @@ export const SorteosCard = ({ sorteo }) => {
     <tr key={sorteo.id}>
       {/* //FALTA OBTENER EL NOMBRE DE AUTHOR Y DEL NOMBRE DE LA EVALUACION */}
       <th scope="row">1</th>
-      <td>{sorteo.round_inscription}</td>
-      <td>{sorteo.user_raffler}</td>
+      <td>{sorteo.round_inscription.evaluation.name}</td>
+      <td>{sorteo.raffle_user.email}</td>
       <td>{sorteo.number_of_winners}</td>
       <td>
         <div
@@ -20,7 +20,7 @@ export const SorteosCard = ({ sorteo }) => {
             navigate(`/admin/ganadores/${sorteo.id}`);
           }}
         >
-          Ver
+          Ver ganadores
         </div>
       </td>
       <td>

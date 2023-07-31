@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { getWinners } from "../../api/gaandores.api";
 
 export const Ganadores = () => {
@@ -22,11 +22,15 @@ export const Ganadores = () => {
   return (
     <>
       <h1>Lista Ganadores</h1>
+      <h3>Proceso: </h3>
       <ul>
         {ganadores.map((ganador) => (
-          <li key={ganador.id}>{ganador.user}</li>
+          <li key={ganador.id}>{ganador.user.email}</li>
         ))}
+        {/* <button>Asginar rol</button> */}
       </ul>
+
+      <Link to="/admin/sorteos">Volver</Link>
     </>
   );
 };

@@ -34,6 +34,7 @@ export const SorteosList = () => {
             <th scope="col">Usuario Sorteador</th>
             <th scope="col">Nº Ganadores</th>
             <th scope="col">Ver</th>
+            <th scope="col">Eliminar</th>
           </tr>
         </thead>
         <tbody>

@@ -4,6 +4,7 @@ import { InscripcionCard } from "../../../components/InscripcionCard";
 import { NavbarDocente } from "../../../components/NavbarDocente";
 import { useState } from "react";
 import { InscripcionEspera } from "../../../components/InscripcionEspera";
+import { DocenteForm } from "../../../components/DocenteForm";
 
 export const DocenteRoutes = () => {
   let algo = useLocation();
@@ -29,6 +30,8 @@ export const DocenteRoutes = () => {
           <Route path="/inscripcion" element={<DocentePage />} />
           <Route path="/inscripcion-proceso" element={<InscripcionCard />} />
           <Route path="/inscripcion-proceso2" element={<InscripcionEspera />} />
+
+          <Route path="/perfil" element={<DocenteForm />} />
 
           <Route path="/*" element={<Navigate to="/docente/inscripcion" />} />
         </Routes>

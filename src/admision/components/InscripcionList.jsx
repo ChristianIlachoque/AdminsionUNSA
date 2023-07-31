@@ -32,7 +32,7 @@ export const InscripcionList = () => {
       const res = await getAllInscripciones(acces_token);
       console.log("inscripciones: ", res.data);
       const newListId = res.data.map((ins) => {
-        return ins.round_inscription;
+        return ins.round_inscription.id;
       });
       console.log("incrip list 11: ", newListId);
       setInscripcionesIds(newListId);
@@ -85,16 +85,15 @@ export const InscripcionList = () => {
               {proceso.is_active ? "PROCESO ACTIVO" : "PROCESO TERMINADO"}
             </div>
             <div className="card-body">
-              {evaluaciones.map((evl) => {
+              <h5 className="card-title">{proceso.evaluation.name}</h5>
+              {/* {evaluaciones.map((evl) => {
                 if (evl.id === proceso.evaluation)
                   return (
-                    <h5 className="card-title" key={evl.id}>
-                      {evl.evaluation}
-                    </h5>
+                    
                   );
-              })}
+              })} */}
 
-              <p className="card-text">{proceso.description}-</p>
+              <p className="card-text">sin info extra</p>
               {inscripcionesIds.includes(proceso.id) ? (
                 <Link
                   className="btn btn-primary"

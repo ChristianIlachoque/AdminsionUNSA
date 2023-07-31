@@ -13,13 +13,13 @@ export const InscripcionForm = ({ proceso }) => {
 
   const navigate = useNavigate();
 
-  
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const onSubmit = handleSubmit(async (data) => {
+    const acces_token = JSON.parse(localStorage.getItem("token"));
     console.log("data to send: ", data);
     await createInscripcion(acces_token, data);
     // await createInscripcion(idUser, isProceso)
@@ -33,12 +33,18 @@ export const InscripcionForm = ({ proceso }) => {
         <h1>Incripcion Card</h1>
         <form onSubmit={onSubmit}>
           <select {...register("ronda", { required: true })}>
-            <option value={proceso.id}>{proceso.evaluation}</option>
+            <option value={proceso.id}>{proceso.evaluation.name}</option>
           </select>
           <input value={user.email} readOnly />
           <input value={user.user_type === "TEACHER" && "DOCENTE"} readOnly />
+          <textarea
+            value={user.work ? user.work : "No tiene"}
+            readOnly
+          ></textarea>
           <button>Inscribirse</button>
         </form>
+        <Link to="/docente/perfil">Editar Perfil</Link>
+        <br />
         <Link to="/docente/inscripcion">Cancelar</Link>
       </div>
     </>

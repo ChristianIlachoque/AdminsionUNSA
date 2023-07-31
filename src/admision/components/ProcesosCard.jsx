@@ -10,31 +10,31 @@ export const ProcesosCard = ({ proceso }) => {
   const [procesosIDs, setProcesosIDs] = useState([]);
   const [evaluaciones, setEvaluaciones] = useState([]);
   const [usuarios, setUsuarios] = useState([]);
-  useEffect(() => {
-    const getEvaluaciones = async () => {
-      const acces_token = JSON.parse(localStorage.getItem("token"));
-      const res = await getAllEvaluaciones(acces_token);
-      console.log("evaluaciones", res.data);
-      setEvaluaciones(res.data);
-    };
-    const getUsuarios = async () => {
-      const acces_token = JSON.parse(localStorage.getItem("token"));
-      const resU = await getAllUsuarios(acces_token);
-      console.log("usuario", resU.data);
-      setUsuarios(resU.data);
-    };
-    getEvaluaciones();
-    getUsuarios();
-  }, []);
+  // useEffect(() => {
+  //   const getEvaluaciones = async () => {
+  //     const acces_token = JSON.parse(localStorage.getItem("token"));
+  //     const res = await getAllEvaluaciones(acces_token);
+  //     console.log("evaluaciones", res.data);
+  //     setEvaluaciones(res.data);
+  //   };
+  //   const getUsuarios = async () => {
+  //     const acces_token = JSON.parse(localStorage.getItem("token"));
+  //     const resU = await getAllUsuarios(acces_token);
+  //     console.log("usuario", resU.data);
+  //     setUsuarios(resU.data);
+  //   };
+  //   getEvaluaciones();
+  //   getUsuarios();
+  // }, []);
   useEffect(() => {
     const getProcesosID = async () => {
       const acces_token = JSON.parse(localStorage.getItem("token"));
       const res = await getAllSorteos(acces_token);
-      console.log("sorteos: ", res.data);
+      // console.log("sorteos: ", res.data);
       const newListId = res.data.map((ins) => {
-        return ins.round_inscription;
+        return ins.round_inscription.id;
       });
-      console.log("incrip list 11: ", newListId);
+      // console.log("incrip list 11: ", newListId);
       setProcesosIDs(newListId);
     };
     getProcesosID();
@@ -43,14 +43,17 @@ export const ProcesosCard = ({ proceso }) => {
     <tr>
       {/* //FALTA OBTENER EL NOMBRE DE AUTHOR Y DEL NOMBRE DE LA EVALUACION */}
       <th scope="row">1</th>
-      {evaluaciones.map((evl) => {
+      {/* {evaluaciones.map((evl) => {
         if (evl.id === proceso.evaluation)
           return <td key={evl.id}>{evl.evaluation}</td>;
       })}
 
       {usuarios.map((u) => {
         if (u.id === proceso.user_creator) return <td key={u.id}>{u.email}</td>;
-      })}
+      })} */}
+      <td>{proceso.evaluation.name}</td>
+      <td>{proceso.created_by.email}</td>
+      <td>{proceso.teachers_enrrolled}</td>
       <td>{proceso.is_active ? "activo" : "terminado"}</td>
       <td>
         <div

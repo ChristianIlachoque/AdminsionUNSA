@@ -120,7 +120,7 @@ export const NavbarDocente = ({ menu }) => {
                 <div className="profile_name">
                   {user.email.substring(0, user.email.search("@"))}
                 </div>
-                <div className="job">{user.user_type}</div>
+                <div className="job">{user.user_type === "TEACHER" && "DOCENTE"}</div>
               </div>
               <i className="bx bx-log-out" onClick={logout}></i>
             </div>

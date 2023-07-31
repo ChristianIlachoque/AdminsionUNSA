@@ -12,6 +12,7 @@ export const SorteosForm = () => {
 
   const navigate = useNavigate();
   const { state } = useLocation();
+  console.log("sorteo: ", state);
   const {
     register,
     handleSubmit,
@@ -37,7 +38,7 @@ export const SorteosForm = () => {
       <h1>Sorteos form</h1>
       <form onSubmit={onSubmit}>
         <select {...register("ronda", { required: true })}>
-          <option value={state.id}>{state.evaluation}</option>
+          <option value={state.id}>{state.evaluation.name}</option>
         </select>
         <input
           type="number"

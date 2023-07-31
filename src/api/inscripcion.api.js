@@ -33,7 +33,7 @@ export const createRonda = (acces_token, ronda) => {
 };
 
 export const deleteRonda = (acces_token, id) => {
-  return rondasApi.delete(`/${id}`, {
+  return rondasApi.delete(`/${id}/`, {
     headers: {
       Authorization: acces_token,
     },
@@ -50,6 +50,14 @@ export const updateRonda = (acces_token, id, ronda) => {
       Authorization: acces_token,
     },
   });
+};
+
+export const updateRondaPartial = (acces_token, id, ronda) => {
+  return rondasApi.patch(
+    `/${id}/`,
+    { is_active: ronda.active },
+    { headers: { Authorization: acces_token } }
+  );
 };
 export const getAllEvaluaciones = (acces_token) => {
   return evaluacionesApi.get("/", {

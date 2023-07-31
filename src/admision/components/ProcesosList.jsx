@@ -16,7 +16,7 @@ export const ProcesosList = () => {
     const acces_token = JSON.parse(localStorage.getItem("token"));
     async function loadProcesos() {
       const res = await getAllRondas(acces_token);
-      console.log(res.data);
+      console.log("All procesos", res.data);
       setProcesos(res.data);
     }
 
@@ -25,16 +25,17 @@ export const ProcesosList = () => {
 
   return (
     <>
-      <h2 style={{ margin: "0px 30px"}}>Lista de los procesos</h2>
+      <h2 style={{ margin: "0px 30px" }}>Lista de los procesos</h2>
       <table
         className="table table-hover"
-        style={{ margin: "30px 130px", width: "800px", height: "100px" }}
+        style={{ margin: "30px", height: "100px" }}
       >
         <thead>
           <tr>
             <th scope="col">#</th>
             <th scope="col">Nombre</th>
             <th scope="col">Autor</th>
+            <th scope="col">Inscritos</th>
             <th scope="col">Estado</th>
             <th scope="col"></th>
             <th scope="col">Sorteo</th>

@@ -13,6 +13,7 @@ import {
   getAllEvaluaciones,
   getRonda,
   updateRonda,
+  updateRondaPartial,
 } from "../../api/inscripcion.api";
 import { AppContext } from "../../context/AppContext";
 
@@ -28,7 +29,8 @@ export const ProcesosForm = () => {
     formState: { errors },
     setValue,
   } = useForm();
-
+  const params = useParams();
+  console.log("v params: ", params.id);
   useEffect(() => {
     async function loadProceso() {
       const acces_token = JSON.parse(localStorage.getItem("token"));
@@ -39,7 +41,7 @@ export const ProcesosForm = () => {
       if (params.id) {
         const res = await getRonda(acces_token, params.id);
         console.log("info 1 eval:", res.data);
-        setValue("evaluacion", res.data.evaluation);
+        setValue("evaluacion", res.data.evaluation.id);
         setValue("active", res.data.is_active);
         //setValue("description", res.data.description);
       }
@@ -47,12 +49,13 @@ export const ProcesosForm = () => {
     loadProceso();
   }, []);
   const navigate = useNavigate();
-  const params = useParams();
   const onSubmit = handleSubmit(async (data) => {
     const acces_token = JSON.parse(localStorage.getItem("token"));
     if (params.id) {
-      await updateRonda(acces_token, params.id, data);
+      console.log("update: ", data);
+      await updateRondaPartial(acces_token, params.id, data);
     } else {
+      console.log("create: ", data);
       await createRonda(acces_token, data);
     }
 
@@ -97,80 +100,37 @@ export const ProcesosForm = () => {
     //   )}
     // </>
     <>
-      <form
-        onSubmit={onSubmit}
-        style={{
-          margin: "100px 200px",
-          background: "rgb(217,217,217)",
-          borderRadius: "25px",
-        }}
-      >
-        <br></br>
-        <h2 style={{ margin: "0px 0px", textAlign: "center" }}>
-          Crear un nuevo proceso
-        </h2>
-        <br></br>
-        <div className="form-group" style={{ margin: "0px 30px" }}>
-          <label>Seleccione el examen</label>
-          <select {...register("evaluacion", { required: true })}>
-            {evaluaciones.map((evaluacion) => (
-              <option value={evaluacion.id} key={evaluacion.id}>
-                {evaluacion.evaluation}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="form-check" style={{ margin: "0px 30px" }}>
-          {errors.exam && <span>evaluacion is required</span>}
-          {params.id && (
-            <>
-              <input
-                {...register("active")}
-                type="checkbox"
-                value={true}
-                className="form-check-input"
-              />
-              Activo
-            </>
-          )}
-        </div>
-        <br></br>
-        <div style={{ margin: "0px 135px" }}>
-          <button
-            type="button"
-            className="btn btn-primary"
-            style={{ background: "#3351a3" }}
-          >
-            Guardar
-          </button>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <button type="button" className="btn btn-danger">
-            <Link
-              to="/admin/procesos"
-              style={{ textDecoration: "none", color: "#FFFFFF" }}
-            >
-              Cancelar
-            </Link>
-          </button>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          {params.id && (
-            <button
-              type="button"
-              className="btn btn-danger"
-              onClick={async () => {
-                const accepted = window.confirm("are you sure?");
-                if (accepted) {
-                  await deleteRonda(acces_token, params.id);
-                  navigate("/admin/procesos");
-                }
-              }}
-            >
-              Delete
-            </button>
-          )}
-        </div>
-        <br></br>
+      <form onSubmit={onSubmit}>
+        <select {...register("evaluacion", { required: true })}>
+          {evaluaciones.map((evaluacion) => (
+            <option value={evaluacion.id} key={evaluacion.id}>
+              {evaluacion.name}
+            </option>
+          ))}
+        </select>
+        {errors.evaluacion && <span>evaluacion is required</span>}
+        {params.id && <input {...register("active")} type="checkbox" />}
+        <button className="btn btn-success">Guardar</button>
       </form>
+
+      {params.id && (
+        <button
+          className="btn btn-danger"
+          onClick={async () => {
+            const acces_token = JSON.parse(localStorage.getItem("token"));
+            const accepted = window.confirm("are you sure?");
+            if (accepted) {
+              await deleteRonda(acces_token, params.id);
+              navigate("/admin/procesos");
+            }
+          }}
+        >
+          Delete
+        </button>
+      )}
+      <Link className="btn btn-secondary" to="/admin/procesos">
+        Cancelar
+      </Link>
     </>
   );
 };
