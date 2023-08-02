@@ -35,20 +35,40 @@ export const SorteosForm = () => {
 
   return (
     <>
-      <h1>Sorteos form</h1>
-      <form onSubmit={onSubmit}>
-        <select {...register("ronda", { required: true })}>
-          <option value={state.id}>{state.evaluation.name}</option>
-        </select>
-        <input
-          type="number"
-          placeholder="Cantidad Ganadores"
-          {...register("winners", { required: true })}
-        />
-        {errors.winners && <span>count winners is required</span>}
-        <button>Save</button>
-
-        <Link to="/admin/procesos">Cancelar</Link>
+      <form onSubmit={onSubmit}
+            style={{margin: '100px 200px',
+                    background: 'rgb(217,217,217)',
+                    borderRadius: '25px'}}>
+        <br></br>
+        <h2 style={{margin: '0px 0px',
+                  textAlign: 'center'}}>Crear un nuevo sorteo</h2>
+        <br></br>  
+        <div className="form-group" style={{margin: '0px 30px'}}>
+          <label >Proceso que pertenece</label>          
+          <select {...register("ronda", { required: true })}>
+            <option value={state.id}>{state.evaluation.name}</option>
+          </select>
+          <br></br><br></br>
+          <label >Numero de ganadores</label>
+          <br></br>
+          <input
+            type="number"
+            placeholder="Cantidad Ganadores"
+            {...register("winners", { required: true })}
+          />
+          {errors.winners && <span>count winners is required</span>}
+          <br></br><br></br>
+        </div>
+        <div className="form-group" style={{margin: '0px 250px'}}>
+        <button className="btn btn-primary">Save</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <Link to="/admin/procesos">
+          <button className="btn btn-danger">
+            Cancelar
+          </button>
+        </Link>
+        </div>
+        <br></br>
         {/* {params.id && (
           <button
             onClick={async () => {

@@ -6,7 +6,7 @@ export const DocentePage = () => {
   const { logout } = useContext(AppContext);
   return (
     <>
-      <h1>Docente PAGE</h1>
+      <h1 style={{margin: '0px 30px'}}>Docente PAGE</h1>
       <InscripcionList />
     </>
   );

@@ -12,7 +12,7 @@ export const SorteosCard = ({ sorteo }) => {
       <th scope="row">1</th>
       <td>{sorteo.round_inscription.evaluation.name}</td>
       <td>{sorteo.raffle_user.email}</td>
-      <td>{sorteo.number_of_winners}</td>
+      <td style={{textAlign: 'center'}}>{sorteo.number_of_winners}</td>
       <td>
         <div
           className="btn btn-primary"
@@ -20,7 +20,7 @@ export const SorteosCard = ({ sorteo }) => {
             navigate(`/admin/ganadores/${sorteo.id}`);
           }}
         >
-          Ver ganadores
+          Ganadores
         </div>
       </td>
       <td>

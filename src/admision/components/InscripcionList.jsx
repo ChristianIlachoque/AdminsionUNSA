@@ -61,8 +61,13 @@ export const InscripcionList = () => {
   }
   if (procesos.length === 0) {
     return (
-      <div>
-        <h2>No hay procesos activos</h2>
+      <div style={{margin: '100px 350px',
+                    background: 'rgb(217,217,217)',
+                    borderRadius: '25px',
+                    textAlign: 'center'}}>
+        <br></br>
+        <h2 style={{margin: '0px 30px'}}>No hay procesos activos</h2>
+        <br></br>
       </div>
     );
   }
@@ -74,11 +79,11 @@ export const InscripcionList = () => {
 
       {/* COMPONENTE 1 - existen procesos */}
       <div>
-        <h3>Inscripcion List</h3>
+        <h3 style={{margin: '0px 30px'}}>Inscripcion List</h3>
         {procesos.map((proceso) => (
           <div
             className="card text-center"
-            style={{ margin: "10px 100px" }}
+            style={{ margin: "10px 300px" }}
             key={proceso.id}
           >
             <div className="card-header">
@@ -93,7 +98,7 @@ export const InscripcionList = () => {
                   );
               })} */}
 
-              <p className="card-text">sin info extra</p>
+              <p className="card-text">Sin info extra</p>
               {inscripcionesIds.includes(proceso.id) ? (
                 <Link
                   className="btn btn-primary"

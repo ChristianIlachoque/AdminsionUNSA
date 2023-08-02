@@ -28,17 +28,16 @@ export const ProcesosList = () => {
       <h2 style={{ margin: "0px 30px" }}>Lista de los procesos</h2>
       <table
         className="table table-hover"
-        style={{ margin: "30px", height: "100px" }}
+        style={{ margin: "30px 50px", width: "1000px", height: "100px" }}
       >
-        <thead>
+        <thead style={{textAlign: 'center'}}>
           <tr>
             <th scope="col">#</th>
             <th scope="col">Nombre</th>
             <th scope="col">Autor</th>
             <th scope="col">Inscritos</th>
             <th scope="col">Estado</th>
-            <th scope="col"></th>
-            <th scope="col">Sorteo</th>
+            <th scope="col" colSpan="2">Sorteo</th>
           </tr>
         </thead>
         <tbody>

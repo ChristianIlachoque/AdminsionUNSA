@@ -28,24 +28,46 @@ export const InscripcionForm = ({ proceso }) => {
   });
   return (
     <>
-      <h1>InscripcionForm</h1>
       <div>
-        <h1>Incripcion Card</h1>
-        <form onSubmit={onSubmit}>
-          <select {...register("ronda", { required: true })}>
-            <option value={proceso.id}>{proceso.evaluation.name}</option>
-          </select>
-          <input value={user.email} readOnly />
-          <input value={user.user_type === "TEACHER" && "DOCENTE"} readOnly />
-          <textarea
-            value={user.work ? user.work : "No tiene"}
-            readOnly
-          ></textarea>
-          <button>Inscribirse</button>
+        <form onSubmit={onSubmit} style={{margin: '20px 150px',
+                                          background: 'rgb(217,217,217)',
+                                          borderRadius: '25px'}}>
+          <br></br>
+          <h1 style={{margin: '0px 0px',
+                  textAlign: 'center'}}>Formulario de inscripcion</h1>
+          <br></br>
+          <div className="form-group" style={{margin: '0px 30px'}}>
+            <label >Proceso que pertenece</label>
+            <br></br>                                  
+            <select {...register("ronda", { required: true })}>
+              <option value={proceso.id}>{proceso.evaluation.name}</option>
+            </select>
+            <br></br><br></br>
+            <label >Correo del postulante</label>
+            <br></br>
+            <input value={user.email} readOnly />
+            <br></br><br></br>
+            <label >Rol del postulante</label>
+            <br></br>
+            <input value={user.user_type === "TEACHER" && "DOCENTE"} readOnly />
+            <br></br><br></br>
+            <label >Trabajo del postulante</label>
+            <br></br>
+            <textarea
+              value={user.work ? user.work : "No tiene"}
+              readOnly
+            ></textarea>
+            <br></br><br></br>
+            <div style={{margin:'0px 150px'}}>
+              <button className="btn btn-primary">Inscribirse</button>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <Link to="/docente/perfil" className="btn btn-primary">Editar Perfil</Link>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <Link to="/docente/inscripcion" className="btn btn-danger">Cancelar</Link>
+            </div>
+            <br></br>
+          </div>
         </form>
-        <Link to="/docente/perfil">Editar Perfil</Link>
-        <br />
-        <Link to="/docente/inscripcion">Cancelar</Link>
       </div>
     </>
   );

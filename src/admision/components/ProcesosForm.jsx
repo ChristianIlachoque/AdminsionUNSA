@@ -100,37 +100,55 @@ export const ProcesosForm = () => {
     //   )}
     // </>
     <>
-      <form onSubmit={onSubmit}>
-        <select {...register("evaluacion", { required: true })}>
-          {evaluaciones.map((evaluacion) => (
-            <option value={evaluacion.id} key={evaluacion.id}>
-              {evaluacion.name}
-            </option>
-          ))}
-        </select>
-        {errors.evaluacion && <span>evaluacion is required</span>}
-        {params.id && <input {...register("active")} type="checkbox" />}
-        <button className="btn btn-success">Guardar</button>
+      <form onSubmit={onSubmit} style={{margin: '100px 180px',
+                  background: 'rgb(217,217,217)',
+                  borderRadius: '25px'}}>
+        <br></br>
+        <h2 style={{margin: '0px 0px',
+                  textAlign: 'center'}}>Crear un nuevo proceso</h2>
+        <br></br>
+        <div className="form-group" style={{margin: '0px 30px'}}>
+          <label >Seleccione el examen</label>
+          <select {...register("evaluacion", { required: true })}>
+            {evaluaciones.map((evaluacion) => (
+              <option value={evaluacion.id} key={evaluacion.id}>
+                {evaluacion.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="form-check" style={{margin: '0px 30px'}}>
+          {errors.evaluacion && <span>evaluacion is required</span>}
+          {params.id && <input {...register("active")} type="checkbox" />}
+        </div>
+        <br></br>
+        <div style={{margin: '0px 135px'}}>
+          <button className="btn btn-success">Guardar</button>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <Link to="/admin/procesos">
+            <button className="btn btn-danger">
+              Cancelar
+            </button>
+          </Link>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          {params.id && (
+            <button
+              className="btn btn-danger"
+              onClick={async () => {
+                const acces_token = JSON.parse(localStorage.getItem("token"));
+                const accepted = window.confirm("are you sure?");
+                if (accepted) {
+                  await deleteRonda(acces_token, params.id);
+                  navigate("/admin/procesos");
+                }
+              }}
+            >
+              Delete
+            </button>
+          )}
+        </div>
+        <br></br>
       </form>
-
-      {params.id && (
-        <button
-          className="btn btn-danger"
-          onClick={async () => {
-            const acces_token = JSON.parse(localStorage.getItem("token"));
-            const accepted = window.confirm("are you sure?");
-            if (accepted) {
-              await deleteRonda(acces_token, params.id);
-              navigate("/admin/procesos");
-            }
-          }}
-        >
-          Delete
-        </button>
-      )}
-      <Link className="btn btn-secondary" to="/admin/procesos">
-        Cancelar
-      </Link>
     </>
   );
 };

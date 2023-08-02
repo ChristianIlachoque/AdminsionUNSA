@@ -74,7 +74,7 @@ export const ProcesosCard = ({ proceso }) => {
           <Link
             className="btn btn-secondary"
             to="/admin/sorteos-create/"
-            state={proceso}
+            state={proceso} 
           >
             Crear
           </Link>

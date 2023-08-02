@@ -22,12 +22,12 @@ export const SorteosList = () => {
   }, []);
   return (
     <>
-      <h1>Sorteos List</h1>
+      <h1 style={{margin: '0px 50px'}}>Sorteos List</h1>
       <table
         className="table table-hover"
-        style={{ margin: "140px 130px", width: "800px", height: "100px" }}
+        style={{ margin: "30px 50px", width: "1000px", height: "100px" }}
       >
-        <thead>
+        <thead style={{textAlign: 'center'}}>
           <tr>
             <th scope="col">#</th>
             <th scope="col">Proceso</th>
@@ -41,7 +41,7 @@ export const SorteosList = () => {
           {sorteos.map((sorteo) => (
             <SorteosCard key={sorteo.id} sorteo={sorteo} />
           ))}
-        </tbody>
+          </tbody>
       </table>
     </>
   );

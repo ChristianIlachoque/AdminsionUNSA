@@ -17,7 +17,8 @@ export const DocenteRoutes = () => {
   return (
     <>
       <NavbarDocente menu={menu} />
-      <section className="home-section">
+      <section className="home-section" style={{overflow:'auto',
+                                                position: 'absolute'}}>
         <div className="home-content">
           <i
             className="bx bx-menu"

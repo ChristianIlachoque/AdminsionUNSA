@@ -16,7 +16,8 @@ export const AdminRoutes = ({ isAdmin }) => {
   return (
     <>
       <NavbarAdmin menu={menu} />
-      <section className="home-section">
+      <section className="home-section" style={{position: 'absolute',
+                                                overflow:'auto'}}>
         <div className="home-content">
           <i
             className="bx bx-menu"
