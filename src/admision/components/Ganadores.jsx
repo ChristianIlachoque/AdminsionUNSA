@@ -21,38 +21,48 @@ export const Ganadores = () => {
 
   return (
     <>
-      <div style={{margin: '100px 350px',
-                  background: 'rgb(217,217,217)',
-                  borderRadius: '25px'}}>
+      <div
+        style={{
+          margin: "100px 350px",
+          background: "rgb(217,217,217)",
+          borderRadius: "25px",
+        }}
+      >
         <br></br>
-        <h2 style={{margin: '0px 30px'}}>Lista de ganadores</h2>
+        <h2 style={{ margin: "0px 30px" }}>Lista de ganadores</h2>
         <br></br>
         <table
-        className="table table-hover"
-        style={{ margin: "0px 20px", width: "350px", height: "100px" }}
-      >
-        <thead style={{textAlign: 'center'}}>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Correo</th>
-          </tr>
-        </thead>
-        <tbody>
-            {ganadores.map((ganador) => (  
-          <tr>
-            <th scope="row">1</th>
-            <td>Name</td>
-            <td> {ganador.user.email}</td>
-          </tr>
+          className="table table-hover"
+          style={{ margin: "0px 20px", width: "350px", height: "100px" }}
+        >
+          <thead style={{ textAlign: "center" }}>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Correo</th>
+            </tr>
+          </thead>
+          <tbody>
+            {ganadores.map((ganador) => (
+              <tr key={ganador.id}>
+                <th scope="row">1</th>
+                <td>Name</td>
+                <td> {ganador.user.email}</td>
+              </tr>
             ))}
-        </tbody>
-      </table>
+          </tbody>
+        </table>
         <br></br>
-        <Link to="/admin/sorteos" className="btn btn-danger" style={{ margin: "0px 20px"}}>Volver</Link>
-      <br></br><br></br>
+        <Link
+          to="/admin/sorteos"
+          className="btn btn-danger"
+          style={{ margin: "0px 20px" }}
+        >
+          Volver
+        </Link>
+        <br></br>
+        <br></br>
       </div>
-      
     </>
   );
 };

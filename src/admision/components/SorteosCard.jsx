@@ -27,6 +27,7 @@ export const SorteosCard = ({ sorteo }) => {
         <div
           className="btn btn-danger"
           onClick={async () => {
+            const acces_token = JSON.parse(localStorage.getItem("token"))
             const accepted = window.confirm("are you sure?");
             if (accepted) {
               await deleteSorteo(acces_token, sorteo.id);
