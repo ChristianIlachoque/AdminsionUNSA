@@ -51,7 +51,7 @@ export const InscripcionForm = ({ proceso }) => {
         <form
           onSubmit={onSubmit}
           style={{
-            margin: "20px 150px",
+            margin: "50px 150px",
             background: "rgb(217,217,217)",
             borderRadius: "25px",
           }}

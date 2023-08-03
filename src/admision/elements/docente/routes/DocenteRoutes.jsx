@@ -25,7 +25,7 @@ export const DocenteRoutes = () => {
             id="bx-menu"
             onClick={funcionOnCloseMenu}
           ></i>
-          <span className="text">Procesos</span>
+          <span className="text">SISTEMA DE SELECCIÓN PARA EL PROCESO DE ADMISION</span>
         </div>
         <Routes>
           <Route path="/inscripcion" element={<DocentePage />} />

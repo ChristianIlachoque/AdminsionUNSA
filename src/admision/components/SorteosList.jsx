@@ -22,7 +22,7 @@ export const SorteosList = () => {
   }, []);
   return (
     <>
-      <h1 style={{margin: '0px 50px'}}>Sorteos List</h1>
+      <h1 style={{margin: '0px 50px'}}>Lista de sorteos</h1>
       <table
         className="table table-hover"
         style={{ margin: "30px 50px", width: "1000px", height: "100px" }}

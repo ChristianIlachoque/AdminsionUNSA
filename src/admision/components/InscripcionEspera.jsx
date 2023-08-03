@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 export const InscripcionEspera = () => {
   return (
     <>
-      <h1 style={{margin: '0px 30px'}}>Pagina Espera</h1>
+      <h1 style={{margin: '0px 30px'}}>Pagina de espera</h1>
       <div style={{margin: '100px 350px',
                   background: 'rgb(217,217,217)',
                   borderRadius: '25px',

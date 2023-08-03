@@ -23,17 +23,17 @@ export const Ganadores = () => {
     <>
       <div
         style={{
-          margin: "100px 350px",
+          margin: "100px 200px",
           background: "rgb(217,217,217)",
           borderRadius: "25px",
         }}
       >
         <br></br>
-        <h2 style={{ margin: "0px 30px" }}>Lista de ganadores</h2>
+        <h2 style={{ textAlign: 'center' }}>Lista de ganadores</h2>
         <br></br>
         <table
           className="table table-hover"
-          style={{ margin: "0px 20px", width: "350px", height: "100px" }}
+          style={{ margin: "0px 45px", width: "600px", height: "100px" }}
         >
           <thead style={{ textAlign: "center" }}>
             <tr>
@@ -46,7 +46,7 @@ export const Ganadores = () => {
             {ganadores.map((ganador) => (
               <tr key={ganador.id}>
                 <th scope="row">1</th>
-                <td>Name</td>
+                <td> {ganador.user.name}</td>
                 <td> {ganador.user.email}</td>
               </tr>
             ))}
@@ -56,7 +56,7 @@ export const Ganadores = () => {
         <Link
           to="/admin/sorteos"
           className="btn btn-danger"
-          style={{ margin: "0px 20px" }}
+          style={{ margin: "0px 300px" }}
         >
           Volver
         </Link>

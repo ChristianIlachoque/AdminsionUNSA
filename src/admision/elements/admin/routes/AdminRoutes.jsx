@@ -24,7 +24,7 @@ export const AdminRoutes = ({ isAdmin }) => {
             id="bx-menu"
             onClick={funcionOnCloseMenu}
           ></i>
-          <span className="text">Procesos</span>
+          <span className="text">SISTEMA DE SELECCIÓN PARA EL PROCESO DE ADMISION</span>
         </div>
         <Routes>
           <Route path="/procesos" element={<ProcesosPage />} />

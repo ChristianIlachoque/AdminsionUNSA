@@ -34,8 +34,16 @@ export const DocenteForm = () => {
   });
   return (
     <>
-      <h1>Docente form page</h1>
-      <h3>Form</h3>
+    <form
+          onSubmit={onSubmit}
+          style={{
+            margin: "50px 350px",
+            background: "rgb(217,217,217)",
+            borderRadius: "25px",
+          }}
+        >
+      <br></br>
+      {/*<h3 style={{textAlign: 'center'}}>Formulario para editar perfil</h3>
       <form onSubmit={onSubmit}>
         <input value={user.email} disabled />
         <input value={user.user_type} disabled />
@@ -44,6 +52,39 @@ export const DocenteForm = () => {
         {errors.work && <span>work is required</span>}
         <button>Guardar</button>
       </form>
+        */}
+      <div className="form-group" style={{ margin: "0px 30px",
+                                          textAlign:'center'}}>
+            <h3 style={{textAlign: 'center'}}>Perfil del docente</h3>
+            <br></br>
+            <label>Correo del postulante</label>
+            <br></br>
+            <input value={user.email} disabled />
+            <br></br>
+            <br></br>
+            <label>Rol del postulante</label>
+            <br></br>
+            <input value={user.user_type} disabled />
+            <br></br>
+            <br></br>
+            <label>DNI</label>
+            <br></br>
+            <input value="49392939" disabled />
+            <br></br>
+            <br></br>
+            <label>Trabajo</label>
+            <br></br>
+            <textarea {...register("work", { required: true })}
+                      style={{width:'300px'}}></textarea>
+            {errors.work && <span>work is required</span>}
+            <br></br>
+            <br></br>
+            <div style={{ margin: "0px 125px" }}>
+              <button className="btn btn-primary">Guardar</button>
+            </div>
+            <br></br>
+          </div>
+          </form>
     </>
   );
 };

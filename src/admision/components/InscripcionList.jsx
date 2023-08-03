@@ -79,7 +79,7 @@ export const InscripcionList = () => {
 
       {/* COMPONENTE 1 - existen procesos */}
       <div>
-        <h3 style={{margin: '0px 30px'}}>Inscripcion List</h3>
+        <h3 style={{margin: '0px 30px'}}>Lista de inscripciones</h3>
         {procesos.map((proceso) => (
           <div
             className="card text-center"
@@ -117,7 +117,7 @@ export const InscripcionList = () => {
                 </Link>
               )}
             </div>
-            <div className="card-footer text-muted">2 days ago</div>
+            <div className="card-footer text-muted">dd/mm/aaaa</div>
           </div>
         ))}
       </div>

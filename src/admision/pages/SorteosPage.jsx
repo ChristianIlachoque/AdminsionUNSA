@@ -5,7 +5,7 @@ import { SorteosList } from "../components/SorteosList";
 export const SorteosPage = () => {
   return (
     <>
-      <h1>Sorteos Page</h1>
+      {/*<h1>Sorteos Page</h1>*/}
       <SorteosList />
     </>
   );

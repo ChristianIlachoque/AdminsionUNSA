@@ -16,7 +16,7 @@ export const InscripcionCard = () => {
 
   return (
     <>
-      <h1>Page form inscrition</h1>
+      {/*<h1>Page form inscrition</h1>*/}
       {/* Se tiene que hacer una validación  para mostrar alguno de los 3*/}
 
       {/* COMPONENTE 1 - Formulario de Inscripcion - user no esta inscrito (idUser, idProceso)*/}
