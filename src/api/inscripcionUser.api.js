@@ -1,13 +1,14 @@
 import axios from "axios";
+import { baseBack } from "./baseBack";
 
 const inscripcionApi = axios.create({
-  baseURL: "http://35.222.147.54:8000/api/roundinscription/userinscription/",
+  baseURL: `${baseBack}/api/roundinscription/userinscription/`,
 });
 const evaluacionesApi = axios.create({
-  baseURL: "http://35.222.147.54:8000/api/admisionprocess/evaluation",
+  baseURL: `${baseBack}/api/admisionprocess/evaluation`,
 });
 const rondasApi = axios.create({
-  baseURL: "http://35.222.147.54:8000/api/roundinscription/roundinscription/",
+  baseURL: `${baseBack}/api/roundinscription/roundinscription/`,
 });
 
 export const createInscripcion = (acces_token, inscripcion) => {

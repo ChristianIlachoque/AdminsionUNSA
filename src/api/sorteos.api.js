@@ -1,14 +1,15 @@
 import axios from "axios";
+import { baseBack } from "./baseBack";
 
 const evaluacionesApi = axios.create({
-  baseURL: "http://35.222.147.54:8000/api/admisionprocess/evaluation",
+  baseURL: `${baseBack}/api/admisionprocess/evaluation`,
 });
 const rondasApi = axios.create({
-  baseURL: "http://35.222.147.54:8000/api/roundinscription/roundinscription/",
+  baseURL: `${baseBack}/api/roundinscription/roundinscription/`,
 });
 
 const sorteosApi = axios.create({
-  baseURL: "http://35.222.147.54:8000/api/raffle/raffle/",
+  baseURL: `${baseBack}/api/raffle/raffle/`,
 });
 
 export const getAllSorteos = (acces_token) => {

@@ -1,7 +1,8 @@
 import axios from "axios";
+import { baseBack } from "./baseBack";
 
 const inscripcionApi = axios.create({
-  baseURL: "http://35.222.147.54:8000/api/roundinscription/roundinscription",
+  baseURL: `${baseBack}/api/roundinscription/roundinscription`,
 });
 const procesosApi = axios.create({
   baseURL: "http://localhost:7000/tasks/api/v1/tasks/",

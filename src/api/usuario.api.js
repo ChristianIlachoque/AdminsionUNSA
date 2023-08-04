@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
+import { baseBack } from "./baseBack";
 //const { acces_token } = useContext(AppContext);
 
 const usuarioApi = axios.create({
-  baseURL: "http://35.222.147.54:8000/api/user/",
+  baseURL: `${baseBack}/api/user/`,
 });
 
 export const getAllUsuarios = (acces_token) => {

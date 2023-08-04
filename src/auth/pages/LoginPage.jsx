@@ -13,8 +13,9 @@ import Image from "react-bootstrap/Image";
 import fondo from "../../assets/fondo.png";
 import icono from "../../assets/icono.png";
 import unsa from "../../assets/unsa.png";
+import { baseBack } from "../../api/baseBack";
 
-const address = "http://35.222.147.54:8000/";
+const address = `${baseBack}/`;
 export const LoginPage = () => {
   const { login, setUser, setAccessToken } = useContext(AppContext);
 
